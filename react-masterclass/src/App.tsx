@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { createGlobalStyle } from 'styled-components';
 import Router from './Router';
+import { ReactQueryDevtools } from 'react-query/devtools'; //cache에 저장된것 볼수있는 라이브러리
 
 const GlobalStyle = createGlobalStyle`
 html, body, div, span, applet, object, iframe,
@@ -66,6 +67,7 @@ const App = () => {
     <>
       <GlobalStyle />
       <Router />
+      <ReactQueryDevtools initialIsOpen={true} />
     </>
   );
 };
