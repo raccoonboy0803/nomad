@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { createGlobalStyle } from 'styled-components';
 import Router from './Router';
+import { ThemeProvider } from 'styled-components';
+import { darkTheme, lightTheme } from './theme';
 import { ReactQueryDevtools } from 'react-query/devtools'; //cache에 저장된것 볼수있는 라이브러리
+import { useRecoilValue } from 'recoil';
+import { isDarkAtom } from './atoms';
 
 const GlobalStyle = createGlobalStyle`
 html, body, div, span, applet, object, iframe,
@@ -63,11 +67,14 @@ table {
 }
 `;
 const App = () => {
+  const isDark = useRecoilValue(isDarkAtom);
   return (
     <>
-      <GlobalStyle />
-      <Router />
-      <ReactQueryDevtools initialIsOpen={true} />
+      <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
+        <GlobalStyle />
+        <Router />
+        <ReactQueryDevtools initialIsOpen={true} />
+      </ThemeProvider>
     </>
   );
 };

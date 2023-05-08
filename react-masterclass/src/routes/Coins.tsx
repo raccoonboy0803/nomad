@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { fetchCoins } from '../api';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import { isDarkAtom } from '../atoms';
 
 const Container = styled.div`
   padding: 0px 20px;
@@ -16,9 +18,10 @@ const Header = styled.header`
 `;
 const CoinsList = styled.ul``;
 const Coin = styled.li`
-  background-color: white;
-  color: ${(props) => props.theme.bgColor};
+  background-color: ${(props) => props.theme.cardBgColor};
+  color: ${(props) => props.theme.textColor};
   border-radius: 15px;
+  border: 1px solid white;
   margin-bottom: 10px;
   a {
     transition: color 0.2s ease-in;
@@ -56,8 +59,9 @@ interface CoinInterface {
   is_active: boolean;
   type: string;
 }
+interface ICoinsProps {}
 
-const Coins = () => {
+const Coins = ({}: ICoinsProps) => {
   // const [coins, setCoins] = useState<CoinInterface[]>([]);
   // const [loading, setLoading] = useState(true);
   // useEffect(() => {
@@ -76,11 +80,13 @@ const Coins = () => {
 
   const { isLoading, data } = useQuery<CoinInterface[]>('allCoins', fetchCoins);
   const coins = data?.slice(0, 100);
-
+  const setDarkAtom = useSetRecoilState(isDarkAtom);
+  const toggleDarkAtom = () => setDarkAtom((prev) => !prev);
   return (
     <Container>
       <Header>
         <Title>coins</Title>
+        <button onClick={toggleDarkAtom}>Toggle Dark Mode</button>
       </Header>
       {isLoading ? (
         <Loader>Loading...</Loader>
