@@ -6,10 +6,10 @@ import Price from './routes/Price';
 
 const Router = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Routes>
-        <Route path={`${process.env.PUBLIC_URL}/`} element={<Coins />} />
-        <Route path={`${process.env.PUBLIC_URL}/:coinId/*`} element={<Coin />}>
+        <Route path="/" element={<Coins />} />
+        <Route path="/:coinId/*" element={<Coin />}>
           {/* <Route path="price" element={<Price />} />
           <Route path="chart" element={<Chart />} /> */}
         </Route>
