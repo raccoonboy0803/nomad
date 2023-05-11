@@ -25,17 +25,24 @@ const Chart = ({ coinId }: ChartProps) => {
     fetchCoinHistory(coinId)
   );
 
+  const exceptData = data ?? [];
+  const chartData = exceptData?.map((i) => {
+    return {
+      x: i.time_close,
+      y: [i.open, i.high, i.low, i.close].map((item) => parseFloat(item)),
+    };
+  });
+
   return (
     <div>
       {isLoading ? (
         'Loading chart...'
       ) : (
         <ApexChart
-          type="line"
+          type="candlestick"
           series={[
             {
-              name: 'price',
-              data: data?.map((price) => parseFloat(price.close)) ?? [],
+              data: chartData,
             },
           ]}
           options={{
@@ -64,13 +71,22 @@ const Chart = ({ coinId }: ChartProps) => {
               curve: 'smooth',
             },
             fill: {
-              type: 'gradient',
-              gradient: { gradientToColors: ['violet'], stops: [0, 100] },
+              type: 'solid',
             },
-            colors: ['beige'],
             tooltip: {
               y: {
                 formatter: (value) => `$${value.toFixed(2)} `,
+              },
+            },
+            plotOptions: {
+              candlestick: {
+                colors: {
+                  upward: '#fbc531',
+                  downward: '#9c88ff',
+                },
+                wick: {
+                  useFillColor: true,
+                },
               },
             },
           }}
