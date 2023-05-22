@@ -2,15 +2,22 @@ import { v1 } from 'uuid'; //난수 생성
 //atom key는 항상 고유값을 가져야하는데 재선언되는 과정에서 고질적인 에러 발생
 import { atom, selector } from 'recoil';
 
+// type categories = 'TO_DO' | 'DOING' | 'DONE';
+export enum categories {
+  'TO_DO' = 'TO_DO',
+  'DOING' = 'DOING',
+  'DONE' = 'DONE',
+}
+
 export interface IToDo {
   text: string;
   id: number;
-  category: 'TO_DO' | 'DOING' | 'DONE';
+  category: categories;
 }
 
-export const categoryState = atom({
+export const categoryState = atom<categories>({
   key: 'category',
-  default: 'TO_DO',
+  default: categories.TO_DO,
 });
 
 export const toDoState = atom<IToDo[]>({
