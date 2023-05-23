@@ -7,7 +7,7 @@ import { darkTheme } from './theme';
 import { ThemeProvider } from 'styled-components';
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById('root') as HTMLElement,
 );
 root.render(
   <React.StrictMode>
@@ -16,5 +16,5 @@ root.render(
         <App />
       </ThemeProvider>
     </RecoilRoot>
-  </React.StrictMode>
+  </React.StrictMode>,
 );
