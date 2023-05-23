@@ -17,6 +17,13 @@ const ToDo = ({ text, category, id }: IToDo) => {
       ];
     });
   };
+  const ondelete = (e: React.MouseEvent<HTMLButtonElement>) => {
+    setToDos((prev) => {
+      const filterTodo = prev.filter((item) => item.id !== id);
+
+      return [...filterTodo];
+    });
+  };
   return (
     <li>
       <span>{text}</span>
@@ -35,6 +42,7 @@ const ToDo = ({ text, category, id }: IToDo) => {
           Done
         </button>
       )}
+      <button onClick={ondelete}>삭제</button>
     </li>
   );
 };
