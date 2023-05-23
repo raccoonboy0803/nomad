@@ -1,14 +1,23 @@
 module.exports = {
   env: {
     browser: true,
-    es2021: true,
+    es6: true,
+    node: true,
   },
-  extends: ['airbnb', 'plugin:prettier/recommended'],
-  overrides: [],
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
+  extends: ['airbnb', 'prettier'],
+  rules: {
+    'import/no-unresolved': 'off',
+    'react/prop-types': 0,
+    'no-extra-semi': 'error',
+    'react/jsx-props-no-spreading': 'off',
+    'no-unused-vars': 'warn',
+    'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
+    'react/self-closing-comp': [
+      'error',
+      {
+        component: false,
+        html: false,
+      },
+    ],
   },
-  plugins: ['react'],
-  rules: {},
 };

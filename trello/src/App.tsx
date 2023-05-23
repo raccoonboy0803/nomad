@@ -5,6 +5,7 @@ import { minuteState, hourSelector } from './atoms';
 function App() {
   const [minutes, setMinutes] = useRecoilState(minuteState);
   const [hours, setHours] = useRecoilState(hourSelector);
+  const a = 'hello';
 
   const onMinutesChange = (e: React.FormEvent<HTMLInputElement>) => {
     setMinutes(+e.currentTarget.value);

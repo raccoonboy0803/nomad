@@ -1,9 +1,8 @@
 import { atom, selector } from 'recoil';
-import { v1 } from 'uuid'; //atom key 오류 방지 위한 난수생성하는 uuid 모듈
-import { serialize } from 'v8';
+import { v1 } from 'uuid'; // 난수 생성
 
 export const minuteState = atom({
-  key: `minutesAtom/${v1()}`, //v1() 실행해야함
+  key: `minutesAtom/${v1()}`,
   default: 0,
 });
 
