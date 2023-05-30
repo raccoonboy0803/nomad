@@ -4,14 +4,23 @@ module.exports = {
     es6: true,
     node: true,
   },
-  extends: ['airbnb', 'prettier'],
+  plugins: ['prettier'],
+  extends: [
+    'eslint:recommended',
+    'airbnb',
+    'plugin:prettier/recommended',
+    'plugin:react/jsx-runtime',
+  ],
+  parserOptions: {
+    ecmaVersion: 2021,
+  },
   rules: {
     'import/no-unresolved': 'off',
     'react/prop-types': 0,
     'no-extra-semi': 'error',
     'react/jsx-props-no-spreading': 'off',
     'no-unused-vars': 'warn',
-    'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
+    'react/jsx-filename-extension': [1, { extensions: ['.tsx', '.ts'] }],
     'react/self-closing-comp': [
       'error',
       {
@@ -19,5 +28,10 @@ module.exports = {
         html: false,
       },
     ],
+    'react/function-component-definition': [
+      1,
+      { namedComponents: ['arrow-function'] },
+    ],
+    'import/extensions': 'off',
   },
 };
